@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>VW Car Pass</title>
+		<!-- Styles -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="side-wrapper" class="side-wrapper clearfix">
+			<div id="intro-content">
+				<div id="intro-wrapper" class="col-xs-12 white-text">
+					<img src="img/logo-vw.png" class="image"/>
+					<h3>Welcome to</h3><h2>– BlockPass –</h2><h3>The 1st  blockchain<br /> based car pass</h3>
+				</div>
+				<div id="enter-wrapper" class="col-xs-12">
+					<form class="form-inline">
+					  <div class="form-group">
+						<input type="email" class="form-control" id="inputCarID" placeholder="Enter Car ID">
+					  </div>
+					</form>
+					<div id="db-load-button" class="center">
+						<button type="button" id="db-load-vehicleId002" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+							Check Car Data over Blockchain
+						</button>
+					</div>
+				</div>
+			</div><!-- END START SCREEN -->
+			<script>
+			  $('#db-load-vehicleId002').on('click', function () {
+				  var $btn = $(this).button('loading')
+					$.ajax ({
+					  url: "https://bcdbhack.westeurope.cloudapp.azure.com:5000/trips/001",
+						success: success,
+					});
+        $btn.button('reset')
+				})
+        function success (response){
+					res = JSON.parse(JSON.stringify(response));
+					
+					vehicleId = res[1].vehicleId
+					$("#vehicle-id").text(vehicleId);
+					trip = res[1].payload;
+					tripMode = trip.tripmode
+					tripStartTime = trip.start_time
+					tripStartOdometer = trip.start_odometer
+					tripStartPosttext = trip.start_postext
+					tripEndTime = trip.end_time
+					tripEndOdometer = trip.end_odometer
+					tripEndPosttext = trip.end_postext
+					distance = trip.distance
+					duration = trip.duration
+					fuelUsage = trip.fuel_usage
+					emission = trip.co2
+					//console.log(prductInfoImg)
+					$("#trip-mode").text(tripMode);
+					$("#trip-start-time").text(tripStartTime);
+					$("#start-odometer").text(tripStartOdometer);
+					$("#trip-start-posttext").text(tripStartPosttext);
+					$("#trip-end-time").text(tripStartTime);
+					$("#end-odometer").text(tripStartOdometer);
+					$("#trip-end-posttext").text(tripEndPosttext);
+					$("#trip-distance").text(distance);
+					$("#trip-duration").text(duration);
+					$("#trip-fuel-usage").text(fuelUsage);
+					$("#trip-emissions").text(emission);
+					$("#car-data").show();
+					$('#intro-content').hide();
+				}
+        function get_img_url (original_img_url) {
+					return (original_img_url.match('http.*\.jpg'))
+				}
+			</script>
+			<div id="car-data">
+				<nav class="navbar navbar-default navbar-vw">
+				  <div class="container-fluid">
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+					  <a class="navbar-brand" href="#">VW – Blockpass</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					  <ul class="nav navbar-nav">
+						<li><a href="#">Trip Overview</a></li>
+						<li><a href="#">Inspections</a></li>
+						<li><a href="#">Damages Log</a></li>
+					  </ul>
+					</div>
+				  </div>
+				</nav>
+				<div id="heading-wrapper" class="white-text">
+					<h5 class=" center">Blockpass Overview of Vehicle </h5><h3>Car ID 001</h3>
+				</div>
+				<div id="car-information">
+				<div id="car-img">
+					<img src="img/vw-tiguan-2016.jpg" />
+				</div>
+				<div id="car-specs">
+					<div class="bg-success certificate">
+						<div class="bold-text">Certified end odometer</div>
+						<div class="certificate-text col-xs-9"><!--span id="end-odometer">replace odometer</span-->80.531 kilometers</div>
+						<div class="certification col-xs-3"><img src="img/certificate-icon.png" class="image" /></div>
+						<div class="green-text"><p>Transaction ID: 9EBwea1UeivCVHQ4<!--span id="vehicle-id">replaceID</span--></p></div>
+					</div>
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					  <div class="panel panel-default panel-vw">
+						<div class="panel-heading" role="tab" id="headingOne">
+						  <h4 class="panel-title">
+							<a class="full-width-link" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							  Vehicle Information
+							</a>
+						  </h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						  <div class="panel-body panel-body-vw">
+							<table class="table">
+								<tboby>
+									<tr>
+										<td>Category</td>
+										<td>VW Passat Combi</td>
+									</tr>
+									<tr>
+										<td>Mileage</td>
+										<td id="trip-start-time">78.879 km</td>
+									</tr>
+									<tr>
+										<td>Displacement</td>
+										<td>1.995 cm³</td>
+									</tr>
+									<tr>
+										<td>Power</td>
+										<td>140 kW (190 hp)</td>
+									</tr>
+									<tr>
+										<td>Fuel type</td>
+										<td>Diesel</td>
+									</tr>
+									<tr>
+										<td>Number of doors</td>
+										<td>4/5</td>
+									</tr>
+									<tr>
+										<td>Transmission</td>
+										<td>Automatic</td>
+									</tr>
+									<tr>
+										<td>Pollutant class</td>
+										<td>Euro6</td>
+									</tr>
+									<tr>
+										<td>Environmental label</td>
+										<td>4 (Green)</td>
+									</tr>
+									<tr>
+										<td>First registration</td>
+										<td>01/2015</td>
+									</tr>
+									<tr>
+										<td>Number of owners of the vehicle</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td>HU</td>
+										<td>01/2019</td>
+									</tr>
+									<tr>
+										<td>Color</td>
+										<td>Alpinweiss (white)</td>
+									</tr>
+								</tboby>
+							  </table>
+						  </div>
+						</div>
+					  </div>
+					  <div class="panel panel-default panel-vw">
+						<div class="panel-heading" role="tab" id="headingTwo">
+						  <h4 class="panel-title">
+							<a class="collapsed full-width-link" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							  Last Trip Information
+							</a>
+						  </h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+						  <div class="panel-body panel-body-vw">
+						  	<table class="table">
+								<tboby>
+									<tr>
+										<td>Trip Mode</td>
+										<td id="trip-mode">replace mode</td>
+									</tr>
+									<tr>
+										<td>Start date/time</td>
+										<td id="trip-start-time">replace time</td>
+									</tr>
+									<tr>
+										<td>Start address</td>
+										<td id="trip-start-posttext">replace address</td>
+									</tr>
+									<tr>
+										<td>Start odometer</td>
+										<td><!--span id="start-odometer">replace odometer</span-->80.531 kilometers</td>
+									</tr>
+									<tr>
+										<td>End date/time</td>
+										<td id="trip-end-time">replace time</td>
+									</tr>
+									<tr>
+										<td>End address</td>
+										<td id="trip-end-posttext">replace address</td>
+									</tr>
+									<tr>
+										<td>Trip distance</td>
+										<td><span id="trip-distance">replace distance</span> meters</td>
+									</tr>
+									<tr>
+										<td>Trip duration</td>
+										<td><span id="trip-duration">replace duration</span> seconds</td>
+									</tr>
+									<tr>
+										<td>Fuel usage</td>
+										<td><span id="trip-fuel-usage">replace fuel usage</span> millilitres</td>
+									</tr>
+									<tr>
+										<td>CO2 emissions</td>
+										<td><span id="trip-emissions">replace emissions</span> grams</td>
+									</tr>
+								</tboby>
+							  </table>
+							  <div class="maps-info">
+								<p>Google Maps Information</p>
+							  	<img src="img/google-maps.png" class="image" />
+							  </div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!-- END CAR SPECS -->
+				</div>
+			</div>
+		</div><!-- END SIDE-WRAPPER -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
