@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Lungo Tavolo</title>
+		<!-- Styles -->
+		<link href="css/boilerplate.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>var __adobewebfontsappname__ = "reflow"</script>
+		<script src="http://use.edgefonts.net/lato:n9,i4,n1,i7,i9,n7,i1,i3,n4,n3:all;montserrat:n4:all.js"></script>
+	</head>
+	<body>
+		<div id="side-wrapper" class="side-wrapper clearfix">
+		<nav class="navbar navbar-default navbar-lungo">
+		  <div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#"><img id="logo-lungo-tavolo" src="img/logo-lungo-tavolo.png" class="image" /></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li><button type="button" id="db-load-pants-menu" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+				Load Data Pants
+			</button></li>
+				<li><button type="button" id="db-load-skirt" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+				Load Data Skirt
+			</button></li>
+				<li><button type="button" id="db-load-top" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+				Load Data Top
+			</button></li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+			<!--div id="menu" class="clearfix">
+				<img id="logo-lungo-tavolo" src="img/logo-lungo-tavolo.png" class="image" />
+				<img id="hamburger-menu" src="img/hamburger-menu.png" class="image" />	
+			</div--><!-- END MENU -->
+			<div id="db-load-button">
+			<button type="button" id="db-load-pants" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+				Load Data Pants
+			</button>
+			<!--img src="img/tap-diamont.jpg" type="button" /-->
+			</div>
+			<script>
+			  $('#db-load-pants').on('click', function () {
+				  var $btn = $(this).button('loading')
+					$.ajax ({
+					  url: "http://bcdbhack.westeurope.cloudapp.azure.com:9984/api/v1/transactions?operation=CREATE&asset_id=d19e34a0d753d4b69536c98559cb1393587f77f530f8e03242715ceaec7fcda1",
+						success: success,
+					});
+        $btn.button('reset')
+				})
+			  $('#db-load-pants-menu').on('click', function () {
+				  var $btn = $(this).button('loading')
+					$.ajax ({
+					  url: "http://bcdbhack.westeurope.cloudapp.azure.com:9984/api/v1/transactions?operation=CREATE&asset_id=d19e34a0d753d4b69536c98559cb1393587f77f530f8e03242715ceaec7fcda1",
+						success: success,
+					});
+        $btn.button('reset')
+				})
+			  $('#db-load-skirt').on('click', function () {
+				  var $btn = $(this).button('loading')
+					$.ajax ({
+					  url: "http://bcdbhack.westeurope.cloudapp.azure.com:9984/api/v1/transactions?operation=CREATE&asset_id=9b87fa1d91b6738b56d5c8c3d4f0c48d7d3d7b90bb7700e2df943915e6aa0614",
+						success: success,
+					});
+        $btn.button('reset')
+				})
+			  $('#db-load-top').on('click', function () {
+				  var $btn = $(this).button('loading')
+					$.ajax ({
+					  url: "http://bcdbhack.westeurope.cloudapp.azure.com:9984/api/v1/transactions?operation=CREATE&asset_id=9378359586e9cfa57a1985f930ae251439d82ff8a1fdaab2e055409ced20fe39",
+						success: success,
+					});
+        $btn.button('reset')
+				})
+        function success (response){
+					res = JSON.parse(JSON.stringify(response));
+					product = res[0].asset.data;
+					productDetails = product.Productname.split(',')
+					productName = productDetails[0]
+					productLogo = get_img_url(productDetails[1])
+					edition = product["Limited Edition"]
+					productInfos = product.Detail.split(',')
+					productInfo = productInfos [0]
+					//console.log(prductInfoImg)
+					console.log(productInfos[1])
+					if (typeof productInfos[1] != "undefined") {
+						productInfoImg = get_img_url(productInfos[1])
+						$("#detail-info-img").attr('src', (productInfoImg));
+					}
+					$("#product-name").text(productName);
+					$("#product-img").attr('src', (productLogo));
+					$("#edition-count").text(edition);
+					$("#detail-info").text(productInfo);	
+					//console.log(productName)
+					$("#hide-content").show();
+					$('#db-load-button').hide();
+				}
+        function get_img_url (original_img_url) {
+					return (original_img_url.match('http.*\.jpg'))
+				}
+			</script>
+			<div id="hide-content">
+				<div id="product-img-wrapper" class="clearfix">
+					<div id="container-img" class="clearfix">
+						<img id="product-img" src="img/pants.png" class="image" />
+					</div>
+				</div><!-- END IMG -->
+				<div id="product-info-wrapper" class="clearfix">
+					<div id="container-info" class="clearfix">
+						<p id="product-name">replace product name</p>
+						<p id="edition" class="edition-count">– Edition 
+						<span id="edition-count">– Edition 3 of 100 –</span> –
+						</p>
+					</div>
+					<div id="container-services" class="clearfix">
+						<img id="user-icon" src="img/user-icon.png" class="image" />
+						<img id="chat-icon" src="img/chat-icon.png" class="image" />
+						<img id="camera-icon" src="img/camera-icon.png" class="image" />
+					</div>
+					<div id="container-owner" class="clearfix">
+						<div id="hr" class="clearfix">
+						</div>
+						<div id="content-owner" class="clearfix">
+							<img id="owner-icon" src="img/owner-icon.png" class="image" />
+							<p class="owner-text">
+							This 100 &#x25; authentic Lungo Tavolo <br />luxury good is property of&#x3a;<br />
+							</p>
+						</div>
+						<p id="text">
+						<span class="owner-name">Marius Goebel</span><br />
+						</p>
+					</div>
+				</div><!-- END INFO -->
+				<div id="info-menu-wrapper" class="clearfix">
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a role="button" class="collapsed full-width" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										Product Information
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+								<div class="panel-body">
+									<p id="detail-info">
+									replace product information text
+									</p>
+									<img id="detail-info-img" src="img/pants.png" class="image" />
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed full-width" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										Ethical Information
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<p id="detail-info">
+									replace ethical information text
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed full-width" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										Design History
+									</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<p id="detail-info">
+									replace design information text
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- END EXPAND MENU -->
+				<div id="cross-selling-wrapper" class="clearfix">
+					<div id="hr-small" class="clearfix">
+					</div>
+					<p id="more-products">
+					More Products
+					</p>
+					<div class="container-wrapper">
+						<div class="col-xs-6 clearfix">
+							<img class="cross-selling-product image" src="img/pants-product-1.png" />
+							<p class="product-text"><span class="cross-selling-product-name">LT SP 101<br /></span><span class="cross-selling-product-description">wrap and strap pants</span></p>
+							<div class="cross-selling-link clearfix">
+								<p class="cross-selling-link-text">discover</p><img class="arrow image" src="img/arrow.png" />
+							</div>
+						</div>
+						<div class="col-xs-6 clearfix">
+							<img class="cross-selling-product image" src="img/pants-product-1.png" />
+							<p class="product-text"><span class="cross-selling-product-name">LT SP 101<br /></span><span class="cross-selling-product-description">wrap and strap pants</span></p>
+							<div class="cross-selling-link clearfix">
+								<p class="cross-selling-link-text">discover</p><img class="arrow image" src="img/arrow.png" />
+							</div>
+						</div>
+					</div>
+				</div><!-- END CROSS SELLING -->
+			</div><!-- END HIDE CONTENT -->
+			<div id="footer" class="clearfix">
+				<div id="hr-footer" class="clearfix">
+				</div>
+				<p id="imprint">
+				&copy; 2017 Lungo Tavolo
+				</p>
+			</div><!-- END FOOTER -->
+		</div><!-- END SIDE-WRAPPER -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
