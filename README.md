@@ -138,3 +138,29 @@ vw-web-api
 
 ```
 
+
+# TODO:
+python3 rest_api.py \
+--bdb-ip localhost \
+--bdb-port 9984 \
+--public-key F911cpKsZTP3Fxzx243mJqUh15CtGDTRuVBaw5xnvGXh \
+--private-key 6H6g4c6fwc5MCDMT4cmTgDDuij9Yhr6FXVJ7G2sMoztJ
+
+groupadd -r mongodb && useradd -r -g mongodb mongodb
+docker run \
+--detach \
+--name=mongodb \
+--publish=172.17.0.1:27017:27017 \
+--restart=always \
+--volume=/tmp/mongodb_docker/db:/data/db \
+--volume=/tmp/mongodb_docker/configdb:/data/configdb \
+mongo:3.4.1 \
+--replSet=bigchain-rs
+
+
+
+curl -X POST \
+  -H "Content-Type: application/json" \
+  --data "@test-telemetry-data.json" \
+  http://bcdbhack.westeurope.cloudapp.azure.com:5000/telemetry
+
