@@ -1,0 +1,540 @@
+body {
+    background-color: rgb(238, 236, 225);
+}
+.side-wrapper {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    width: 100%;
+    max-width: 414px;
+}
+#hide-content {
+	display: none;
+}
+.full-width {
+	display: block;
+}
+.navbar-lungo {
+	background: rgb(238, 236, 225) !important;
+	border: 0px;
+	background-image: none;
+	background-repeat: none;
+	-webkit-box-shadow: inset 0 0px 0 rgba(255,255,255,.15),0 0px 0px rgba(0,0,0,.075);
+	box-shadow: inset 0 0px 0 rgba(255,255,255,.15),0 0px 0px rgba(0,0,0,.075);
+}
+.link-text {
+    float: left;
+    font-size: 1.3em;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    line-height: 62px;
+    color: rgb(25, 32, 48);
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: lato;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 34;
+    margin: 0px;
+    clear: none;
+    text-transform: uppercase;
+    min-width: 0px;
+    padding-top: 20px;
+}
+.arrow {
+    float: left;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 15;
+    margin: 5px 0px 0px 10px;
+    clear: none;
+}
+.container-wrapper {
+	margin-top: 40px;
+}
+.owner-text {
+    float: left;
+    font-size: 1em;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 1.2em;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 47;
+    margin: 10px 0px 0px;
+    clear: none;
+    padding: 0px;
+    min-width: 0px;
+    font-family: lato;
+    font-style: italic;
+    color: rgb(161, 159, 152);
+}
+.cross-selling-product {
+    width: auto;
+    max-width: 120px;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 24;
+    margin: 0px auto;
+    clear: none;
+}
+.cross-selling-link-text {
+    float: left;
+    font-size: 1.0625em;
+    width: 67.19291%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 24px;
+    color: rgb(161, 159, 152);
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: lato;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 16;
+    margin-top: 0px;
+    margin-left: 0%;
+    clear: none;
+    margin-right: 0%;
+}
+#hr-small {
+    float: none;
+    height: 1px;
+    width: 50px;
+    border: 0px solid rgb(161, 159, 152);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 27;
+    clear: none;
+    background-color: rgb(161, 159, 152);
+    margin: 54px auto 0px;
+}
+#hr {
+    float: left;
+    height: 1px;
+    width: 100%;
+    border: 0px solid rgb(161, 159, 152);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 51;
+    margin: 0px;
+    clear: none;
+    min-width: 0px;
+    background-color: rgb(161, 159, 152);
+}
+.product-text {
+    float: left;
+    font-size: 1em;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 1em;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 17;
+    margin: 25px 0px 0px;
+    clear: both;
+    min-width: 0px;
+}
+.cross-selling-product-name {
+    float: none;
+    line-height: 24px;
+    color: rgb(25, 32, 48);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: montserrat;
+}
+#more-products {
+    float: left;
+    font-size: 1.2em;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    line-height: 62px;
+    color: rgb(161, 159, 152);
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: lato;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 28;
+    margin: -57px 0px 0px;
+    clear: none;
+}
+.button-style-expand {
+    float: left;
+    height: 100px;
+    width: 100%;
+    background-color: rgba(161, 159, 152, 0.129412);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 41;
+    margin-top: 0px;
+    margin-left: 0%;
+    clear: none;
+    margin-right: 0%;
+    min-width: 0px;
+    border-top-color: rgb(238, 236, 225);
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+#camera-icon {
+    float: right;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 52;
+    margin: 0px;
+    clear: none;
+}
+#edition {
+    float: left;
+    font-size: 1em;
+    width: 100.004883%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 35px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 57;
+    margin: 10px 0px 0px;
+    clear: none;
+    min-width: 0px;
+}
+#detail-info-img {
+	width: 100%;
+}
+.edition-count {
+    float: none;
+    font-size: 1.5em !important;
+    line-height: 35px;
+    color: rgb(25, 32, 48);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: lato;
+}
+#db-load-button {
+	margin: 150px auto;
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+#chat-icon {
+    float: left;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 53;
+    margin: 0px 0px 0px 65px;
+    clear: none;
+}
+#product-name {
+    float: left;
+    font-size: 1.75em;
+    width: 100.004883%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 35px;
+    color: rgb(25, 32, 48);
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: lato;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 58;
+    margin: 0px;
+    clear: none;
+    min-width: 0px;
+}
+#user-icon {
+    float: left;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 54;
+    margin-top: 0px;
+    margin-left: 0%;
+    clear: none;
+    margin-right: 0%;
+}
+#hamburger-menu {
+    float: right;
+    width: 25px;
+    max-width: 100%;
+    height: 22px;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 69;
+    margin: 0px;
+    clear: none;
+}
+#logo-lungo-tavolo {
+    float: left;
+    width: 50%;
+    max-width: 275px;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 70;
+    margin-top: 0px;
+    margin-left: 0%;
+    clear: none;
+    margin-right: 0%;
+}
+#menu {
+    float: left;
+    height: auto;
+    margin: 0px 0px 0px 0%;
+    clear: none;
+    width: 100%;
+    min-width: 0px;
+    padding: 20px 20px 0px;
+}
+#product-img {
+    float: none;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    clear: none;
+    color: rgb(0, 0, 0);
+}
+#product-img-wrapper {
+    float: left;
+    height: auto;
+    margin: 0px;
+    clear: both;
+    width: 100%;
+}
+#container-img {
+    height: auto;
+    margin: 0px;
+    clear: none;
+	overflow: hidden;
+	height: 300px;
+	overflow: hidden;
+	border-radius: 240px;
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+	border: solid 5px rgb(161, 159, 152);
+}
+#product-info-wrapper {
+    float: left;
+    height: auto;
+    margin-left: 0%;
+    margin-top: 0px;
+    clear: both;
+    width: 100%;
+    min-width: 0px;
+    padding: 10px;
+}
+#container-services {
+    float: none;
+    height: auto;
+    margin: 0px auto;
+    clear: both;
+    width: 100%;
+    min-width: 0px;
+    max-width: 230px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding: 40px 0px 0px;
+}
+#container-info {
+    float: left;
+    height: auto;
+    margin-left: 0%;
+    margin-top: 20px;
+    clear: none;
+    width: 100%;
+    min-width: 0px;
+}
+#container-owner {
+    float: left;
+    height: auto;
+    margin: 50px 0px 0px;
+    clear: none;
+    width: 100%;
+    min-width: 0px;
+}
+#content-owner {
+    float: none;
+    height: auto;
+    margin-left: auto;
+    margin-top: 51px;
+    clear: none;
+    width: 100%;
+    min-width: 0px;
+    max-width: 300px;
+    margin-right: auto;
+}
+#info-menu-wrapper {
+    float: left;
+    height: auto;
+    margin: 50px 0px 0px;
+    clear: both;
+    width: 100%;
+    min-width: 0px;
+}
+#cross-selling-wrapper {
+    float: left;
+    height: auto;
+    margin: 50px 0px 0px;
+    clear: both;
+    width: 100%;
+    padding: 10px;
+}
+#con33 {
+    float: left;
+    height: auto;
+    margin: 0px;
+    clear: both;
+    width: 33%;
+}
+.cross-selling-product-description {
+    float: none;
+    font-size: 0.7em;
+    line-height: 24px;
+    color: rgb(25, 32, 48);
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: montserrat;
+}
+.cross-selling-link {
+    float: left;
+    height: auto;
+    margin-left: 0%;
+    margin-top: 25px;
+    clear: both;
+    width: 100%;
+    min-width: 0px;
+}
+#footer {
+    float: left;
+    height: auto;
+    margin-left: 0%;
+    margin-top: 50px;
+    clear: both;
+    width: 100%;
+    padding: 10px;
+}
+#owner-icon {
+    float: none;
+    width: 10%;
+    max-width: 100%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 48;
+    margin: 0px auto;
+    clear: none;
+}
+#text {
+    float: left;
+    font-size: 1em;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 1em;
+    margin: 20px 0px 0px;
+    clear: none;
+    min-height: 0px;
+    min-width: 0px;
+}
+.owner-name {
+    float: none;
+    font-size: 1em;
+    line-height: 1em;
+    font-family: montserrat;
+}
+#imprint {
+    float: left;
+    font-size: 0.8em;
+    width: 45.744681%;
+    height: auto;
+    text-align: left;
+    font-weight: bold;
+    line-height: 24px;
+    color: rgb(161, 159, 152);
+    font-style: normal;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    font-family: lato;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    margin: 20px 0px 0px;
+    clear: both;
+}
+#hr-footer {
+    float: left;
+    height: 1px;
+    width: 100%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    margin: 0px;
+    clear: none;
+    min-width: 0px;
+    background-color: rgb(161, 159, 152);
+}
