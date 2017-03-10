@@ -112,7 +112,7 @@ hackfest-vw
 To check the logs: `docker logs -f hackfest-vw`
 
 
-#### Run VW Web API Server
+#### Run VW Front-End API Server
 ##### Microsoft module
 ```
 cd IoT-hackfest-berlin-2017/vw-web-api
