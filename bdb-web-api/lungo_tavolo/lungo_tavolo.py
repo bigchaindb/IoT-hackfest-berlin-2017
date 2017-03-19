@@ -1,8 +1,8 @@
 from argparse import ArgumentParser
-from logging import getLogger, Formatter, DEBUG
-from logging.handlers import SysLogHandler
+from logging import getLogger, Formatter, DEBUG, StreamHandler
 from bigchaindb_driver import BigchainDB
 from json import dumps as json_dumps
+from sys import stdout
 from time import strftime, gmtime
 
 
@@ -41,7 +41,7 @@ class Provenance(object):
                 new_columns[0] = new_columns[0].replace('.', '')
                 asset[new_columns[0]] = ','.join(new_columns[1:])
             # end for
-            self.logger.debug(json_dumps(asset))
+            #self.logger.debug('Tx data: ' + json_dumps(asset))
         # end with
         # defin the metadata
         asset_metadata = {
@@ -67,7 +67,7 @@ class Provenance(object):
             private_keys=self.keypair['private_key']
         )
         self.bdb.transactions.send(fulfilled_tx)
-        self.logger.debug(fulfilled_tx['id'])
+        self.logger.debug('File: ' + self.file_path + ', Tx Id: ' + fulfilled_tx['id'])
     # end send_to_bdb
 # end class Provenance
 
@@ -94,8 +94,7 @@ if __name__ == '__main__':
     local_formatter = Formatter(
         "%(name)s %(threadName)s %(levelname)s -- %(message)s",
         datefmt='%Y-%m-%d %H:%M:%S')
-    local_syslog = SysLogHandler(address='/dev/log',
-                                 facility=SysLogHandler.LOG_SYSLOG)
+    local_syslog = StreamHandler(stream=stdout)
     local_syslog.setFormatter(local_formatter)
     logger.addHandler(local_syslog)
 

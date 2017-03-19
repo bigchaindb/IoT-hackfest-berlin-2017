@@ -189,9 +189,6 @@ iothub-explorer create <<DEVICE-ID e.g. mydevice01>> --connection-string
 4. The current implementation calls the ETL Logic App. If needed ensure that you'll provide the correct HTTP URL (externally callable) of your Logic App created above.
 5. Run the *iot-virtual-vehicle* Node.js application
 
-
-##### 
-
 # TODO:
 python3 rest_api.py \
 --bdb-ip localhost \
