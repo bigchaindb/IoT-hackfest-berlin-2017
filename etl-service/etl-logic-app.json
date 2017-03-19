@@ -1,0 +1,143 @@
+// -----------------------------------------------------
+// DESCRIPTION
+// -----------------------------------------------------
+// This is the code view export of the logic app. 
+// In order to use this logic app create a new one and
+// paste this in the logic app's code view.
+//
+// Ensure that you replace the placeholder marked 
+// with <PH - name> with your implementation. Currently these
+// are the values that have to be set:
+// - DATASOURCE_URL (e.g. URL to TOMTOM service)
+// - FN_CREATE_URL_QUERY_PARAMS (linked Azure Function)
+// - FN_CREATE_MESSAGE_WITH_KEY (linked Azure Function)
+//
+// -----------------------------------------------------
+
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "CreateUrlWithQueryParams": {
+                "description": "This activity takes input parameters and creates the correct query param string",
+                "inputs": {
+                    "body": "@triggerBody()?['OptionalQueryParams']",
+                    "function": {
+                        "id": "<PH - FN_CREATE_URL_QUERY_PARAMS>"
+                    }
+                },
+                "runAfter": {},
+                "type": "Function"
+            },
+            "Extract": {
+                "inputs": {
+                    "method": "GET",
+                    "uri": "<PH - DATASOURCE_URL>"
+                },
+                "runAfter": {
+                    "CreateUrlWithQueryParams": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "Load": {
+                "actions": {
+                    "Load_-_Send_to_external_endpoint": {
+                        "inputs": {
+                            "body": "@body('Transform_-_Create_valid_message_with_key')",
+                            "method": "POST",
+                            "uri": "@{triggerBody()?['loadUrl']}"
+                        },
+                        "runAfter": {},
+                        "type": "Http"
+                    }
+                },
+                "expression": "@equals(triggerBody()?['performLoad'], true)",
+                "runAfter": {
+                    "Transform_-_Create_valid_message_with_key": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "If"
+            },
+            "Response": {
+                "inputs": {
+                    "body": "@body('Transform_-_Create_valid_message_with_key')",
+                    "statusCode": 200
+                },
+                "runAfter": {
+                    "Load": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Response"
+            },
+            "Transform_-_Create_valid_message_with_key": {
+                "inputs": {
+                    "body": "@body('Extract')",
+                    "function": {
+                        "id": "<PH - FN_CREATE_MESSAGE_WITH_KEY>"
+                    },
+                    "headers": {
+                        "id": "@triggerBody()?['objectno']",
+                        "msgtype": "@triggerBody()?['extractAction']"
+                    },
+                    "method": "POST"
+                },
+                "runAfter": {
+                    "Extract": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Function"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {},
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "OptionalQueryParams": {
+                                "items": {
+                                    "properties": {
+                                        "Key": {
+                                            "type": "string"
+                                        },
+                                        "Value": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "Key",
+                                        "Value"
+                                    ],
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "extractAction": {
+                                "type": "string"
+                            },
+                            "loadUrl": {
+                                "type": "string"
+                            },
+                            "objectno": {
+                                "type": "string"
+                            },
+                            "performLoad": {
+                                "type": "boolean"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    }
+}

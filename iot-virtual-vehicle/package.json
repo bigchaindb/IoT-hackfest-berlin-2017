@@ -1,0 +1,15 @@
+{
+  "name": "iot-virtual-vehicle",
+  "version": "0.0.0",
+  "description": "Virtual Vehicle - IoT Device",
+  "main": "app.js",
+  "author": {
+    "name": "oliverli"
+  },
+  "dependencies": {
+    "azure-iot-device": "^1.1.7",
+    "azure-iot-device-mqtt": "^1.1.7",
+    "bs58": "^4.0.0",
+    "request": "^2.79.0"
+  }
+}

@@ -138,6 +138,56 @@ vw-web-api
 
 ```
 
+#### Setup & run VW IoT device infrastructure
+
+##### Setup the ETL process
+
+This section explains how to setup the ETL process. It uses an Azure Logic App which itself calls two Azure Functions.
+
+###### Create Azure Function '*CreateUrlWithQueryParams*'
+1. On the Azure portal dashboard ([https://portal.azure.com](https://portal.azure.com "https://portal.azure.com")), select *New*.
+2. In the search bar, search for '*function*', and then select *Function App*.
+3. In the newly created Function App, create a new function named '*CreateUrlWithQueryParams*' using the '*HttpTrigger-CSharp*' template
+4. Take the code from this repo (`etl-service\Function-CreateUrlWithQueryParams`) and replace the content of the files *run.csx* and *function.json*
+5. When querying vehicle telemetry data from the TomTom service the correct credentials and keys have to be provided (replace placeholders)!
+6. Test the function within the Azure portal (current window to see if everything is working)
+
+###### Create Azure Function 'CreateSignedMessage'
+1. In the Function App created in the previous step, create a new function named 'CreateSignedMessage' using the '*HttpTrigger-JavaScript*' template.
+2. Take the code from this repo (`etl-service\Function-CreateSignedMessage`) and replace the content of the files *index.js*, *function.json* and *package.json*
+3. Test the function within the Azure portal (current window to see if everything is working)
+
+###### Create the Azrue Logic App (TomTom service data connector)
+
+1. On the Azure portal dashboard ([https://portal.azure.com](https://portal.azure.com "https://portal.azure.com")), select *New*.
+2. In the search bar, search for '*logic app*', and then select *Logic App*.
+3. Enter a name for your logic app, select a location, resource group, and select *Create*.
+4. After opening your logic app for the first time you can select from a template to start. Click *Blank Logic App* to build this from scratch.
+5. Navigate to its *Code View* and paste the code from the repository. Make sure you replace all the relevant places and link your Azure functions.
+
+##### Create an Azure IoT Hub and connect IoT devices (virtual vehicle)
+
+In order to be able to simulate devices (vehicles) an secure IoT infrastructure is required. Azure's IoT Hub provides the required functionalities: device management and ingest point for device data.
+
+This section explains how to create a new Azure IoT Hub instance and a virtual vehicle (Node.js application) which sends telemtry data to the IoT Hub.
+
+###### Create the IoT Hub
+1. On the Azure portal dashboard ([https://portal.azure.com](https://portal.azure.com "https://portal.azure.com")), select *New*.
+2. In the search bar, search for '*iot hub*', and then select *IoT Hub*. Make sure you use the free tier to avoid costs.
+
+###### Create a new device (virtual vehicle) and connect it with the IoT Hub
+1. Install the lastest IoT Hub Explorer tool using NPM
+```
+npm install -g iothub-explorer
+```
+2. Login to your IoT Hub instance and create/register a new device
+```
+iothub-explorer login <<IOT-HUB-CONNECTIONSTRING>>
+iothub-explorer create <<DEVICE-ID e.g. mydevice01>> --connection-string
+```
+3. Write down the device's connection string (is the output of the last command) and use this in the *iot-virtual-vehicle* Node.js application (is in this repository `iot-virtual-vehicle`).
+4. The current implementation calls the ETL Logic App. If needed ensure that you'll provide the correct HTTP URL (externally callable) of your Logic App created above.
+5. Run the *iot-virtual-vehicle* Node.js application
 
 # TODO:
 python3 rest_api.py \
